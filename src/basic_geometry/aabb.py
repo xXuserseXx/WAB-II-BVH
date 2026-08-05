@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from . import Vec2
+from .vec2 import Vec2
+
 @dataclass
 class AABB():
     vec_min:Vec2
@@ -7,3 +8,14 @@ class AABB():
 
     def center(self):
         return (self.vec_max + self.vec_min) * 0,5
+
+    def intersects(self, other):
+        return not (
+            self.vec_max.x < other.vec_min.x
+            or self.vec_min.x > other.vec_max.x
+            or self.vec_max.y < other.vec_min.y
+            or self.vec_min.y > other.vec_max.y
+        )
+
+    #def longest_axis():
+
