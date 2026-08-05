@@ -1,0 +1,126 @@
+\documentclass{provadis-thesis}
+\setlength{\parindent}{0pt}
+\usepackage{lipsum}
+\usepackage{longtable}
+
+% Debugging packages:
+% This package was used to verify that there is a \headsep between
+% header and \chapter.
+% \usepackage{showframe}
+
+% This avoids magic strings
+\newcommand{\chaptersfolder}{chapters}
+\newcommand{\auxiliaryChapters}{auxiliary_chapters}
+
+
+% Bibliography packages - add before document begins
+\usepackage{csquotes}
+\input{\auxiliaryChapters/_00_Config.tex}
+%\usepackage[backend=biber,style=apa,sorting=nyt]{biblatex}
+%\DeclareLanguageMapping{ngerman}{ngerman-apa}
+%\usepackage[backend=biber,style=apa,sorting=nyt]{biblatex}
+\addbibresource{references.bib}
+
+% Document metadata
+\thesistitle{Title\\Subtitle}
+\thesistype{WAB/Exposé}
+\degree{Bachelor of Science (B.Sc.)}
+\studiengang{Computer Science}
+
+% Author information
+\author{\authorName}
+\matrikelnr{\authorMatrikel}
+\studiengruppe{BIN-T25-F-3}
+\studentemail{\authorMail}
+\studentphone{\authorPhone} % optional
+
+
+% Supervisors and dates
+\firstsupervisor{Prof. Dr. Lamya Abdullah}
+%\secondsupervisor{M.Sc. Vorname Nachname}
+\submissiondate{15.12.2025}
+
+% Optional: Course name (if applicable)
+\coursename{Scientific Work}
+
+\begin{document}
+
+% Title page (no page number)
+\maketitle
+
+% Start front matter - Roman numerals (i, ii, iii, ...)
+\frontmatter
+
+% Optional: Confidentiality notice (only if needed)
+% Uncomment the line below and edit sperrvermerk.tex file with your company name
+%\makeconfidentialitynotice
+
+% Table of contents
+\tableofcontents
+\clearpage
+
+% List of figures
+\listoffigures
+\addcontentsline{toc}{chapter}{List of Figures}
+
+% Glossary
+\schapter{Glossary}
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% Beamer presentation requires \usepackage{colortbl} instead of \usepackage[table,xcdraw]{xcolor}
+\input{\auxiliaryChapters/_01_Glossary.tex}
+
+
+\clearpage
+% List of tables
+\listoftables
+\addcontentsline{toc}{chapter}{List of Tables}
+
+% Abbreviations
+\schapter{Abbreviations}
+
+\input{\auxiliaryChapters/_02_Abbreviations.tex}
+
+\clearpage
+
+
+% Start main matter - Arabic numerals (1, 2, 3, ...)
+% Header will show chapter titles
+\mainmatter
+
+% Main content
+\input{\chaptersfolder/_1_Introduction.tex}
+
+\input{\chaptersfolder/_2_Related_Work.tex}
+
+\input{\chaptersfolder/_3_Methodology.tex}
+
+\input{\chaptersfolder/_4_Execution.tex}
+
+\input{\chaptersfolder/_5_Results.tex}
+
+\input{\chaptersfolder/_6_Conclusion.tex}
+
+\clearpage
+\renewcommand{\thepage}{\Roman{page}}
+% Bibliography using BibLaTeX
+\printbibliography[heading=bibnumbered,title={Bibliography}]
+
+\clearpage
+% AI Directory
+\chapter{AI Usage Log}
+
+\vspace{1cm}
+
+\input{\auxiliaryChapters/_03_AI_Usage.tex}
+	
+\vspace{1cm}
+
+% Declaration of authorship
+% Die ehrenwörtliche Erklärung ist mit der digitalen Unterschrift (Bild) des Studierenden zu versehen. Bei einem UPLOAD der Arbeit im HVS ersetzt der Authentifizierungsprozess die Unterschrift – diese ist dann optional. 
+% In jedem Fall muss unter dem Text der ehrenwörtlichen Erklärung Ort und Datum angegeben werden..
+
+\makedeclaration{Bonn}{\today}{\authorSignature}
+
+\end{document}

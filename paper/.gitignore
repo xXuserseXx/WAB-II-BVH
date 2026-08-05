@@ -1,0 +1,75 @@
+# ------------------------------------------------------------------------------
+# LaTeX auxiliary files
+# ------------------------------------------------------------------------------
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.idx
+*.ilg
+*.ind
+*.glo
+*.glg
+*.gls
+*.ist
+
+# Glossaries & nomenclature
+*.acn
+*.acr
+*.alg
+*.glsdefs
+*.nlo
+*.nls
+
+# SyncTeX
+*.synctex.gz
+*.synctex(busy)
+
+# Latexmk
+*.fdb_latexmk
+*.fls
+
+# PDFLaTeX, LuaLaTeX, XeLaTeX intermediate files
+*.nav
+*.snm
+*.vrb
+
+# TikZ & pgf
+*.dpth
+*.md5
+*.auxlock
+
+# Bibliography system output
+*.run.xml
+*.biber.log
+
+# ------------------------------------------------------------------------------
+# Editor-specific and OS-specific clutter
+# ------------------------------------------------------------------------------
+
+# macOS metadata
+.DS_Store
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# vim
+*.swp
+*.swo
+
+# ------------------------------------------------------------------------------
+# Build / output files
+# ------------------------------------------------------------------------------
+*.pdf
+*.dvi
+*.ps
+
+# If you keep generated PDFs in a subfolder, allow them:
+# !output/*.pdf

@@ -1,0 +1,32 @@
+% Macro, um das Model einheitlich für alle Zeilen zu setzen
+\newcommand{\aiModel}{GPT-5.2}
+
+% Usage-Optionen, die ich häufig verwende:
+% AI usage categories
+\newcommand{\usageResearch}{Research and literature support}
+\newcommand{\usageLatex}{LaTeX support}
+\newcommand{\usageDebugging}{Code debugging support}
+\newcommand{\usageWriting}{Wording and sentence-structure support}
+
+
+\begin{xltabular}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3cm}|}
+	\hline
+	\textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
+	\hline
+	\endfirsthead
+	
+	\hline
+	\textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
+	\hline
+	\endhead
+	
+	\hline
+	\endfoot
+	
+	\aiModel & Help me with the LaTeX template & \usageLatex \\
+	\hline
+	
+	\aiModel & Find relevant literature for Ray Shooting & \usageResearch \\
+	\hline
+
+\end{xltabular}

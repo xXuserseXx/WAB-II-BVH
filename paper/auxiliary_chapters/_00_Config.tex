@@ -1,0 +1,31 @@
+% Citation style switch
+% Use APA when using the \mycite command, which is the formal Provadis requirement
+% A lot of professors are relaxed and you can just do IEEE + \cite
+
+\newif\ifUseIEEE
+\UseIEEEtrue  % false = APA, true = IEEE
+
+\ifUseIEEE
+  \usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\else
+  \usepackage[backend=biber,style=apa,sorting=nyt]{biblatex}
+\fi
+
+\newif\ifUseJustus
+\UseJustustrue % false = Linus, true = Justus
+
+\ifUseJustus
+	\newcommand{\authorName}{Justus Redlin}
+	\newcommand{\authorMatrikel}{E202}
+	\newcommand{\authorSignature}{justus_signature}
+	\newcommand{\authorMail}{justus.redlin@stud-provadis-hochschule.de}
+	\newcommand{\authorPhone}{+49 1578 9634184}
+\else
+	\newcommand{\authorName}{Linus Jahn}
+	\newcommand{\authorMatrikel}{E320}
+	\newcommand{\authorSignature}{linus_signature}
+	\newcommand{\authorMail}{linus.jahn@stud-provadis-hochschule.de}
+	\newcommand{\authorPhone}{+49 151 55696352}
+\fi
+
+
