@@ -9,6 +9,7 @@ class AABB():
     def center(self):
         return (self.vec_max + self.vec_min) * 0,5
 
+    # Randberührungen sind Kollisionen
     def intersects(self, other):
         return not (
             self.vec_max.x < other.vec_min.x
@@ -17,5 +18,12 @@ class AABB():
             or self.vec_min.y > other.vec_max.y
         )
 
+    def merge_aabb(self, other: AABB) -> AABB:
+        return AABB(
+            min(self.vec_min.x, other.vec_min.x),
+            min(self.vec_min.y, other.vec_min.y),
+            max(self.vec_max.x, other.vec_max.x),
+            max(self.vec_max.y, other.vec_max.y)
+        )
     #def longest_axis():
 
