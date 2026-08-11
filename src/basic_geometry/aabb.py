@@ -10,7 +10,7 @@ class AABB():
         return (self.vec_max + self.vec_min) * 0,5
 
     # Randberührungen sind Kollisionen
-    def intersects(self, other):
+    def overlaps(self, other):
         return not (
             self.vec_max.x < other.vec_min.x
             or self.vec_min.x > other.vec_max.x
