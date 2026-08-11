@@ -1,5 +1,7 @@
 import csv
+from pathlib import Path
 
+@dataclass
 class ExperimentConfig:
     particle_counts:tuple[int]
     datasets_per_count: int
@@ -28,3 +30,12 @@ def _write_raw_results_csv(path: Path, rows: list[dict[str]]) -> None:
         writer = csv.DictWriter(w, fieldnames=fieldnames)
         writer.writeheader
         writer.writerows(rows)
+
+def run_experiment(config: ExperimentConfig, output_dir: Path):
+    config.validate
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    #Config speichern
+
+    
