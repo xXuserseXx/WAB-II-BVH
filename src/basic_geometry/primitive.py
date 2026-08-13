@@ -1,8 +1,8 @@
 # Kreise werden als primitive genutzt da die Überlappungen hier von aabb test unterscheidbar sind, aber nicht so deep zu implementieren. 
 # Quadrate wären sinnlos, da aabb tests identisch zu kreistests sind
-
+from __future__ import annotations
 from dataclasses import dataclass
-from math import sqrt
+
 from .vec2 import Vec2
 from .aabb import AABB
 
@@ -14,11 +14,14 @@ class Particle():
 
     def aabb(self) -> AABB:
         return AABB(
-            (self.center.x - self.radius,
-            self.center.y - self.radius),
-            (self.center.x + self.radius,
-            self.center.y + self.radius)
+            Vec2(self.center.x - self.radius,self.center.y - self.radius),
+            Vec2(self.center.x + self.radius,self.center.y + self.radius)
         )
     
-    def collision_check(self, other):
-        dm = sqrt((self.center.x - other.center.x)**2 + (self.center.y - other.center.y)**2)
+    def collision_check(self, other: Particle) -> bool:
+        squared_distance = Vec2.squared_distance(
+            self.center,
+            other.center
+        )
+
+        return squared_distance <= (self.radius + other.radius) ** 2

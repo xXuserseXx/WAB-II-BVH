@@ -1,11 +1,13 @@
+from __future__ import annotations
 from dataclasses import dataclass
+
 @dataclass
 class Vec2():
     x: float
     y: float
 
     @staticmethod
-    def squaredDistance(first:Vec2, second:Vec2):
+    def squared_distance(first:Vec2, second:Vec2):
         dy = first.y - second.y
         dx = first.x - second.x
 
