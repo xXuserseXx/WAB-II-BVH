@@ -15,6 +15,12 @@ This is meant to assure, that differences in the recorded number of checks can p
 
 \section{BVH construction}
 
+The general principles of the three construction mechanisms are explained in the litereature review section.
+This section therefore will focus on the specific implementations of the algorithms for this experiment.
+
+
+\section{Traversal and Evaluation}
+
 After construction, each hierarchy is queried using the same self-traversal procedure. 
 A pair of subtrees is discarded when their bounding volume do not overlap. 
 If the bounding volume does overlap, traversal continues with the remaining child-node combination. A primitive test is only performed when a subtreee conssits of two direct leaf-type children.
@@ -26,5 +32,3 @@ Keeping the measures seperatly was chosen, as they represent two different opera
 % They may help explain differences in behaviour, but are not considered a primary measurement as this is not the goal of this work.
 %
 % Mal gucken ob ich das so reinnehme, ich adde es erstmal als comment
-
-\section{Traversal and Evaluation}
