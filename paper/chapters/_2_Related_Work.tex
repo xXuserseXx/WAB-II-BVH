@@ -1,1 +1,12 @@
-\chapter{Related Work}
+\chapter{Theoretical Backround and Related Work}
+
+\section{BVH for Collision detection}
+
+Collision detection is commonly divided into two stages, broad phase and narrow phase
+The broad phase aims to effeciently eliminate pairs of objects that cannot collide and produce a set of potential collision candidate pairs.
+The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine wheter a collision occurs\cite[p.14]{ericson2004real}.
+
+One approach for the acceleration of the broad phase is the use of Bounding Volume Hierarchies. 
+A BVH organises groups of objects hierachically by recurisevly enclosing them in bounding volumes, allowing entire groups of objects to be discarded when their bounding volumes do not overlap.
+In this work axis-aligned bounding-boxes are used as bounding volumes.
+Axis-asligned bounding boxes are rectangular bounding box, which edges are aligned with the coordinate axes, making overlap tests computational inexpensive
