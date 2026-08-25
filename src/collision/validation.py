@@ -9,7 +9,7 @@ def brute_force_collisions(particles: List[Particle]):
     for i,first in enumerate(particles):
         for second in particles[i + 1:]:
             if first.collision_check(second):
-                collisions.add((min(first.index, second.index), max(first.index, second.index)))
+                collisions.add((min(first.id, second.id),max(first.id, second.id),))
     return collisions
 
 
@@ -18,5 +18,5 @@ def brute_force_aabb_overlaps(particles: List[Particle]):
     for i, first in enumerate(particles):
         for second in particles[i + 1:]:
             if first.aabb().overlaps(second.aabb()):
-                overlaps.add((min(first.index, second.index), max(first.index, second.index)))
+                overlaps.add((min(first.id, second.id), max(first.id, second.id)))
     return overlaps
