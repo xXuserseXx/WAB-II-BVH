@@ -12,7 +12,7 @@ def det_seed(base_seed:int, particle_count: int, dataset_id:int) -> int:
     payload = f"{base_seed}:{particle_count}:{dataset_id}"
     return int.from_bytes((hashlib.sha256(payload).digest())[:8], "big")
 
-def domain_side_for_coverage(particle_count: int, radius: float, coverage: float) -> int:
+def domain_side_for_coverage(particle_count: int, radius: float, coverage: float) -> float:
     # Experimente sollten unabhängig der zahl an Partikeln ungefähr die gleiche coverage machen, sonst kann man die Kollisions nicht ordentlichen vergleichen
 
     total_particle_area = particle_count * math.pi * radius * radius
