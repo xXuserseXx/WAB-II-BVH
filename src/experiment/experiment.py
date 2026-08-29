@@ -38,7 +38,7 @@ def _write_raw_results_csv(path: Path, rows: list[dict[str]]) -> None:
     ]
     with path.open("w", encoding="utf-8") as w:
         writer = csv.DictWriter(w, fieldnames=fieldnames)
-        writer.writeheader
+        writer.writeheader()
         writer.writerows(rows)
 
 def run_experiment(

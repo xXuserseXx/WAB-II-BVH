@@ -33,7 +33,7 @@ def build_recursive(particles: list[Particle],node_ids,) -> Node:
   return node
   
 def create_leaf(particle: Particle, node_id: int) -> Node:
-  return Node(node_id= node_id , particle_id = particle.id, aabb = particle.aabb, leaf_count = 1)
+  return Node(node_id= node_id , particle_id = particle.id, aabb = particle.aabb(), leaf_count = 1)
   
 def combined_aabb(particles: list[Particle]) -> AABB:
   combined = particles[0].aabb()
