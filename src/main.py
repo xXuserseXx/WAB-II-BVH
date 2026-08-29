@@ -1,10 +1,25 @@
-from basic_geometry.vec2 import Vec2
-from basic_geometry.aabb import AABB
-from basic_geometry.primitive import Particle
+from experiment.experiment import ExperimentConfig, run_experiment
 
-vec_test = Vec2(2, 2)
-vec_test2 = Vec2(3, 3)
 
-vec_test3 = Vec2(4, 4)
-vec_test4 = Vec2(5, 5)
+def main():
+  config = ExperimentConfig(
+    particle_counts=(10, 100),
+    datasets_per_count=2,
+    base_seed=42,
+    circle_radius=1.0,
+    coverage=0.1,
+    strategies=("top_down",),
+    create_plots=False,
+    validate_against_brute_force=True,
+  )
 
+  rows = run_experiment(
+    config,
+    "results"
+  )
+
+  print(f"Experiment finished with {len(rows)} runs.")
+
+
+if __name__ == "__main__":
+  main()

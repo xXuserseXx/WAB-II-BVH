@@ -8,6 +8,6 @@ For interactive applications, such as video games, where collision detection may
 A common way to reduce the number of required collision checks is to use bounding volumes, which approximate objects with simpler shapes, such as bounding boxes.
 If two bounding boxes do not overlap, neither will the primitive objects enclosed in them, allowing to skip the otherwise needed exact collision checks.
 
-This principle can be extended through so called "Bounding Volume Hierarchies" (BVH). 
+This principle can be extended through so called Bounding Volume Hierarchies (BVH). 
 A BVH allows for the organization of objects in a binary-tree, where internal nodes represent bounding volumes containing all their child nodes, and leaf nodes represent primitive objects. 
 During traversal entire subtrees can be discarded if their bounding-volumes do not overlap.

@@ -9,8 +9,8 @@ from basic_geometry.vec2 import Vec2
 
 def det_seed(base_seed:int, particle_count: int, dataset_id:int) -> int:
     # Suche nur ne ausrede um mal hashs zu benutzen lol, aber ein guter weg um deterministische random seeds für bestimmte experiment config zu kriegen ig
-    payload = f"{base_seed}:{particle_count}:{dataset_id}"
-    return int.from_bytes((hashlib.sha256(payload).digest())[:8], "big")
+    payload = f"{base_seed}:{particle_count}:{dataset_id}".encode("utf-8")
+    return int.from_bytes(hashlib.sha256(payload).digest()[:8], "big")
 
 def domain_side_for_coverage(particle_count: int, radius: float, coverage: float) -> float:
     # Experimente sollten unabhängig der zahl an Partikeln ungefähr die gleiche coverage machen, sonst kann man die Kollisions nicht ordentlichen vergleichen

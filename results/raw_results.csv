@@ -1,0 +1,5 @@
+particle_count,dataset_id,domain_side,coverage,radius,strategy,bounding_volume_checks,primitive_checks,tree_height,total_aabb_area
+10,0,17.724538509055158,0.1,1.0,top_down,13,2,,
+10,1,17.724538509055158,0.1,1.0,top_down,14,2,,
+100,0,56.049912163979286,0.1,1.0,top_down,188,17,,
+100,1,56.049912163979286,0.1,1.0,top_down,224,23,,
