@@ -1,8 +1,9 @@
 % Macro, um das Model einheitlich für alle Zeilen zu setzen
-\newcommand{\aiModel}{GPT-5.2}
+\newcommand{\sol}{GPT-5.6 Sol High}
+\newcommand{\astra}{GPT-6 Astra High}
 
-% Usage-Optionen, die ich häufig verwende:
-% AI usage categories
+
+% Usage-Optionen:
 \newcommand{\usageResearch}{Research and literature support}
 \newcommand{\usageLatex}{LaTeX support}
 \newcommand{\usageDebugging}{Code debugging support}
@@ -10,23 +11,24 @@
 
 
 \begin{xltabular}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3cm}|}
-	\hline
-	\textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
-	\hline
-	\endfirsthead
-	
-	\hline
-	\textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
-	\hline
-	\endhead
-	
-	\hline
-	\endfoot
-	
-	\aiModel & Help me with the LaTeX template & \usageLatex \\
-	\hline
-	
-	\aiModel & Find relevant literature for Ray Shooting & \usageResearch \\
-	\hline
+  \hline
+  \textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
+  \hline
+  \endfirsthead
+  
+  \endhead
+  
+  \hline
+  \endfoot
+  
+  \sol & 
+	\texttt{using Github Plugin for Data Access}, \texttt{Web Search}; Starte eine weitere Literatursuche basierend auf dem Text in meinm Github. Gebe mir eine kurze Zusammenfassung der Quelleninhalte, und einen Prioritätscore (Priorität nach wahrscheinlicher Nutzungshäufigkeit) Suche bitte primär nach Englischsprachigen Quellen, da die Arbeit auf Englisch verfasst wird & 
+	\usageResearch \\
+  \hline
+  
+	\sol & 
+	\texttt{PDF Reader Functionality} , \texttt{Web Search}; Generiere mir passende Bibtex Einträge basierend auf den angehangenen Papern. Gleiche die Informationen die im Paper stehen mit denen ab die du online finden kannst
+	\usageLatex \\\hline
 
+  
 \end{xltabular}
