@@ -1,6 +1,10 @@
 # Python Project stuff
 /.venv/
-/__pycache__/
+__pycache__/
+
+# Results
+
+/raw_results.csv
 
 
 
@@ -14,3 +18,8 @@
 *.out
 *.synctex.gz
 *.toc
+
+
+# To not accidantily commit a crime by distributing semi legally gathered literature
+
+literature/

@@ -5,12 +5,16 @@ import csv
 from pathlib import Path
 
 from tree_construction.top_down import build_top_down
+from tree_construction.bottom_up import build_bottom
 from collision.traversal import detect_all_pairs
 
 from .dataset import det_seed, generate_particle_set
 from collision.validation import  brute_force_collisions, brute_force_aabb_overlaps
 
-BUILDERS = { "top_down": build_top_down}
+BUILDERS = { 
+            "top_down": build_top_down,
+            "bottom_up":build_bottom
+            }
 
 @dataclass
 class ExperimentConfig:
