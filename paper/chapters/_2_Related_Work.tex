@@ -26,6 +26,23 @@ In case they do overlap, the subtrees will recursively be traversed until leaf n
 An effectiuve hierarchy should allow large parts of the set to be sorted out early.
 Properties such as tightly
 
+\section{BVH Construction Strategies}
+
+Ericson distringuishes between three different approaches to BVH construction, these being top-down, bottom-up and incremental construction \cite[pp.~239--253]{ericson2004real}.
+Although algorithms within these categories differ in the heuristics used, those categories can be used to describe the general way the hierarchy is generated.
+
+\subsection{Top-DOwn Construction}
+
+Top-down construction begins with aöö primitives assigned to the root node.
+The primitive set is then divided into subsets, which are assigned as childeren of the root node. This is then done recursively until a subset contains only one primitive \cite[pp.~240--244]{ericson2004real}.
+
+\subsection{Bottom-Up Construction}
+
+Bottom-up construction proceeds in the opposite direction. Instead of splitting up subsets, in bottom-up subsets are created from merging leaf nodes ccontaining individual primitives. 
+Nodes are repeatedly selected according to a clustering or merging criteria and vombined under a new parent node, until only the root node of the tree is left. \cite[pp.~245--250]{ericson2004real}
+
+\subsection{Incremental Construction}
+
 
 
 \newpage
