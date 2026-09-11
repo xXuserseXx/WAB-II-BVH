@@ -21,17 +21,17 @@ In a binary BVH each leaf node of the tree encloses an primitive object, while i
 
 During collision detecition, the hierarchy can be traversed by comparing the bounding volumes of two nodes. 
 If two bounding volumes do not overlap, all primitives represented by the subtree corresponding two the bounding volume can be discrded.
-In case they do overlap, the subtrees will recursively be traversed until leaf nodes are reached, where primitive tests are conducted \cite[pp.~253--260]{ericson2004real}. From this we can conclude that the structure of the tree influences how much of the subtrees can actually be discarded.
+In case they do overlap, the subtrees will recursively be traversed until leaf nodes are reached, where primitive tests are conducted \cite[pp.~253--260]{ericson2004real}. From this we can conclude that the structure of the tree influences how much of the subtrees can actually be discarded. 
 
 An effectiuve hierarchy should allow large parts of the set to be sorted out early.
-Properties such as tightly
+Properties such as tightness and simplicity of the bounding volumes, 
 
 \section{BVH Construction Strategies}
 
 Ericson distringuishes between three different approaches to BVH construction, these being top-down, bottom-up and incremental construction \cite[pp.~239--253]{ericson2004real}.
 Although algorithms within these categories differ in the heuristics used, those categories can be used to describe the general way the hierarchy is generated.
 
-\subsection{Top-DOwn Construction}
+\subsection{Top-Down Construction}
 
 Top-down construction begins with aöö primitives assigned to the root node.
 The primitive set is then divided into subsets, which are assigned as childeren of the root node. This is then done recursively until a subset contains only one primitive \cite[pp.~240--244]{ericson2004real}.
@@ -43,6 +43,6 @@ Nodes are repeatedly selected according to a clustering or merging criteria and 
 
 \subsection{Incremental Construction}
 
-
+In incremental tree construction, 
 
 \newpage
