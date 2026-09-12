@@ -29,6 +29,7 @@ Properties such as tightness and simplicity of the bounding volumes,
 \section{BVH Construction Strategies}
 
 Ericson distringuishes between three different approaches to BVH construction, these being top-down, bottom-up and incremental construction \cite[pp.~239--253]{ericson2004real}.
+A similir distinction is made by Walter et al., who describe these mechanics as divisive, agglomerative and incemental \cite[p.1]{walter2008agglomerative}.
 Although algorithms within these categories differ in the heuristics used, those categories can be used to describe the general way the hierarchy is generated.
 
 \subsection{Top-Down Construction}
@@ -36,13 +37,33 @@ Although algorithms within these categories differ in the heuristics used, those
 Top-down construction begins with aöö primitives assigned to the root node.
 The primitive set is then divided into subsets, which are assigned as childeren of the root node. This is then done recursively until a subset contains only one primitive \cite[pp.~240--244]{ericson2004real}.
 
+The resulting hierarchy strongly depends on the cost-function used to split, which is why ther chosing of this algorithm depends on the BVhs use-case \cite[p.1]{walter2008agglomerative} \cite[p.2]{wald2007sah}
+Wald describes greedy SAH as the best-known approach for maximizing traversal efficiency, but does not substantiate this general claim further \cite[p.~2]{wald2007sah}.
+
 \subsection{Bottom-Up Construction}
 
 Bottom-up construction proceeds in the opposite direction. Instead of splitting up subsets, in bottom-up subsets are created from merging leaf nodes ccontaining individual primitives. 
 Nodes are repeatedly selected according to a clustering or merging criteria and vombined under a new parent node, until only the root node of the tree is left. \cite[pp.~245--250]{ericson2004real}
 
+
+
 \subsection{Incremental Construction}
 
-In incremental tree construction, 
+In incremental tree construction, a hierarchy is build by inserting primitives sequentially. 
+Starting from an initially smal tree, each new particle is assigned an insertion position dependent on the cost of placement.
+The bounding volumes of the tree are subsequently updated to contain the new primitives. \cite[pp.~251--252]{ericson2004real}.
 
+Goldsmith and Salmon proposed an early automatic hierarchy-construction method
+based on sequential insertion and the evaluation of possible insertion positions
+\cite[pp.~14--20]{goldsmith1987automatic}
+
+\section{Related Work} 
+
+Previous research has investigated how design choices in bounding-volumehierarchies affect collision-detection performance.
+
+
+A substantial amount of the existing BVH-construction research exists in the context of ray-tracing \cite{wald2007sah} \cite{walter2008agglomerative} .
+
+Rather than comparing specific modern construction algorithms, this work investigates the three general construction methods that were described above.
+Fore each category on represantive implementation is applied, the exact implementation and experimental controls are described in the following Methodology chapter.
 \newpage
