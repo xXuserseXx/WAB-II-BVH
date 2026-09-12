@@ -30,9 +30,23 @@ class ExperimentConfig:
 
     validate_against_brute_force: bool
 
-    def validate(self):
-        # TODO
-        pass
+    def validate(self) -> None:
+        if not self.particle_counts:
+            raise ValueError("particle count darf nicht leer sein")
+
+        if self.datasets_per_count <= 0:
+            raise ValueError("mindestens ein dataset benötigt")
+
+        if self.circle_radius <= 0:
+            raise ValueError("kreise sind invalide")
+
+        if self.coverage <= 0:
+            raise ValueError("coverage muss über 0")
+
+        if not self.strategies:
+            raise ValueError("keine Strategie im Config")
+    
+    
 
 def _write_raw_results_csv(path: Path, rows: list[dict[str]]) -> None:
     fieldnames = [
