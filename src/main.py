@@ -8,7 +8,7 @@ def main():
     base_seed=42,
     circle_radius=1.0,
     coverage=0.1,
-    strategies=("top_down", "bottom_up"),
+    strategies=("top_down", "bottom_up", "incremental"),
     create_plots=False,
     validate_against_brute_force=True,
   )

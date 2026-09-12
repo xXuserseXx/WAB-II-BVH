@@ -6,6 +6,7 @@ from pathlib import Path
 
 from tree_construction.top_down import build_top_down
 from tree_construction.bottom_up import build_bottom
+from tree_construction.incremental import build_incremental
 from collision.traversal import detect_all_pairs
 
 from .dataset import det_seed, generate_particle_set
@@ -13,7 +14,8 @@ from collision.validation import  brute_force_collisions, brute_force_aabb_overl
 
 BUILDERS = { 
             "top_down": build_top_down,
-            "bottom_up":build_bottom
+            "bottom_up":build_bottom,
+            "incremental": build_incremental
             }
 
 @dataclass
@@ -50,10 +52,7 @@ def _write_raw_results_csv(path: Path, rows: list[dict[str]]) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-def run_experiment(
-    config: ExperimentConfig,
-    output_dir: str | Path,
-) -> list[dict[str]]:
+def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dict[str]]:
     config.validate()
 
     output_path = Path(output_dir)
@@ -64,18 +63,9 @@ def run_experiment(
     for particle_count in config.particle_counts:
         for dataset_id in range(config.datasets_per_count):
 
-            dataset_seed = det_seed(
-                config.base_seed,
-                particle_count,
-                dataset_id,
-            )
+            dataset_seed = det_seed(config.base_seed,particle_count,dataset_id,)
 
-            particles, domain_side = generate_particle_set(
-                particle_count,
-                config.circle_radius,
-                config.coverage,
-                dataset_seed,
-            )
+            particles, domain_side = generate_particle_set(particle_count,config.circle_radius,config.coverage,dataset_seed,)
 
             reference_pairs = None
             reference_candidates = None
@@ -87,12 +77,9 @@ def run_experiment(
             # Alle Strategien erhalten exakt denselben Datensatz.
             for strategy in config.strategies:
 
-                root = BUILDERS[strategy](particles) # TODO
+                root = BUILDERS[strategy](particles)
 
-                result = detect_all_pairs( 
-                    root,
-                    particles,
-                ) #TODO Hierfür brauche ich noch mindestens einen builder, das kommt als nächstes
+                result = detect_all_pairs(root,particles) 
 
                 if (
                     reference_candidates is not None
