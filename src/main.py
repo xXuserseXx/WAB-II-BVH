@@ -3,7 +3,8 @@ from experiment.experiment import ExperimentConfig, run_experiment
 
 def main():
   config = ExperimentConfig(
-    particle_counts=(25, 50, 75, 100, 125, 150, 175, 200, 225, 250),
+    #particle_counts=(25, 50, 100, 200, 500, 1000),
+    particle_counts=(2,5,10,20),
     datasets_per_count=50,
     base_seed=42,
     circle_radius=1.0,

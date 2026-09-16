@@ -39,7 +39,6 @@ def validate_bvh(root: Node, particles: list[Particle]) -> Node:
 
     def validate_node(node: Node) -> int:
 
-        # Detect cycles / same node being used multiple times
         object_id = id(node)
 
         if object_id in visited_nodes:
@@ -47,7 +46,6 @@ def validate_bvh(root: Node, particles: list[Particle]) -> Node:
 
         visited_nodes.add(object_id)
 
-        # Node IDs should also be unique
         if node.node_id in visited_node_ids:
             raise AssertionError(f"Duplicate node ID: {node.node_id}")
 

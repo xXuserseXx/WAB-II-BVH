@@ -11,6 +11,7 @@ from collision.traversal import detect_all_pairs
 
 from .dataset import det_seed, generate_particle_set
 from collision.validation import  brute_force_collisions, brute_force_aabb_overlaps
+from .plotting import create_plots
 
 BUILDERS = { 
             "top_down": build_top_down,
@@ -161,5 +162,8 @@ def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dic
         raw_path,
         raw_rows,
     )
+
+    if config.create_plots:
+        create_plots(raw_path,output_path / "plots",)
 
     return raw_rows
