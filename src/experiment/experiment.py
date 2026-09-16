@@ -10,7 +10,7 @@ from tree_construction.incremental import build_incremental
 from collision.traversal import detect_all_pairs
 
 from .dataset import det_seed, generate_particle_set
-from collision.validation import  brute_force_collisions, brute_force_aabb_overlaps
+from collision.validation import  brute_force_collisions, brute_force_aabb_overlaps, validate_bvh
 from .plotting import create_plots
 
 BUILDERS = { 
@@ -94,6 +94,8 @@ def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dic
 
                 root = BUILDERS[strategy](particles)
 
+                validate_bvh(root, particles)
+
                 result = detect_all_pairs(root,particles) 
 
                 if (
@@ -164,6 +166,6 @@ def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dic
     )
 
     if config.create_plots:
-        create_plots(raw_path,output_path / "plots",)
+        create_plots(raw_path,output_path)
 
     return raw_rows

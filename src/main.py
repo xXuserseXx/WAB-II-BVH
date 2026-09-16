@@ -1,4 +1,6 @@
 from experiment.experiment import ExperimentConfig, run_experiment
+from plyer import notification
+
 
 
 def main():
@@ -10,7 +12,7 @@ def main():
     circle_radius=1.0,
     coverage=0.1,
     strategies=("top_down", "bottom_up", "incremental"),
-    create_plots=False,
+    create_plots=True,
     validate_against_brute_force=True,
   )
 
@@ -20,6 +22,9 @@ def main():
   )
 
   print(f"Experiment finished with {len(rows)} runs.")
+
+  
+  notification.notify(title="BVH Experiment fertig",message= f"Der Experiment run mit{len(rows)} runs ist durchgelaufen",app_name="BVH Experiment", timeout=10)
 
 
 if __name__ == "__main__":

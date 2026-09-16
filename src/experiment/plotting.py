@@ -28,7 +28,7 @@ def create_plots(raw_csv_path: Path, output_plot_path: Path):
 
         plt.figure(figsize=(8,5))
 
-        for strategy, results in strategies.item():
+        for strategy, results in strategies.items():
             particle_counts = sorted(results.keys())
             means = []
 
