@@ -1,0 +1,193 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{ericson2004real}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=ce4108d000f2ab3383891dc12c16ae76}{%
+           family={Ericson},
+           familyi={E\bibinitperiod},
+           given={Christer},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Crc Press}%
+      }
+      \strng{namehash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{fullhash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{fullhashraw}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{bibnamehash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{authorbibnamehash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{authornamehash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{authorfullhash}{ce4108d000f2ab3383891dc12c16ae76}
+      \strng{authorfullhashraw}{ce4108d000f2ab3383891dc12c16ae76}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Real-time collision detection}
+      \field{year}{2004}
+    \endentry
+    \entry{vandenbergen1997aabb}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d1ab81bae771330780c76021e66ef223}{%
+           family={Bergen},
+           familyi={B\bibinitperiod},
+           given={Gino},
+           giveni={G\bibinitperiod},
+           prefix={van\bibnamedelima den},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \strng{namehash}{d1ab81bae771330780c76021e66ef223}
+      \strng{fullhash}{d1ab81bae771330780c76021e66ef223}
+      \strng{fullhashraw}{d1ab81bae771330780c76021e66ef223}
+      \strng{bibnamehash}{d1ab81bae771330780c76021e66ef223}
+      \strng{authorbibnamehash}{d1ab81bae771330780c76021e66ef223}
+      \strng{authornamehash}{d1ab81bae771330780c76021e66ef223}
+      \strng{authorfullhash}{d1ab81bae771330780c76021e66ef223}
+      \strng{authorfullhashraw}{d1ab81bae771330780c76021e66ef223}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Graphics Tools}
+      \field{number}{4}
+      \field{title}{Efficient Collision Detection of Complex Deformable Models using AABB Trees}
+      \field{volume}{2}
+      \field{year}{1997}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1080/10867651.1997.10487480
+      \endverb
+    \endentry
+    \entry{walter2008agglomerative}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=28695a18f6ec34dbc51988976d04542d}{%
+           family={Walter},
+           familyi={W\bibinitperiod},
+           given={Bruce},
+           giveni={B\bibinitperiod}}}%
+        {{hash=a6107ba226c1ac8bc29c118a2fc0d0a1}{%
+           family={Bala},
+           familyi={B\bibinitperiod},
+           given={Kavita},
+           giveni={K\bibinitperiod}}}%
+        {{hash=6451bbf3003ca6e87b4e648102f20132}{%
+           family={Kulkarni},
+           familyi={K\bibinitperiod},
+           given={Milind},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e7f2014846734dae8a242e557fdafb65}{%
+           family={Pingali},
+           familyi={P\bibinitperiod},
+           given={Keshav},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{8386e115a1f29997b70235645c11736b}
+      \strng{fullhash}{00cf797449b6becdd171a18301e9bb85}
+      \strng{fullhashraw}{00cf797449b6becdd171a18301e9bb85}
+      \strng{bibnamehash}{00cf797449b6becdd171a18301e9bb85}
+      \strng{authorbibnamehash}{00cf797449b6becdd171a18301e9bb85}
+      \strng{authornamehash}{8386e115a1f29997b70235645c11736b}
+      \strng{authorfullhash}{00cf797449b6becdd171a18301e9bb85}
+      \strng{authorfullhashraw}{00cf797449b6becdd171a18301e9bb85}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2008 IEEE Symposium on Interactive Ray Tracing}
+      \field{title}{Fast Agglomerative Clustering for Rendering}
+      \field{year}{2008}
+      \field{pages}{81\bibrangedash 86}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/RT.2008.4634626
+      \endverb
+    \endentry
+    \entry{wald2007sah}{inproceedings}{}{}
+      \name{author}{1}{}{%
+        {{hash=d429aca2a7aebc42bbf44da929124fbb}{%
+           family={Wald},
+           familyi={W\bibinitperiod},
+           given={Ingo},
+           giveni={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{fullhash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{fullhashraw}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{bibnamehash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{authorbibnamehash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{authornamehash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{authorfullhash}{d429aca2a7aebc42bbf44da929124fbb}
+      \strng{authorfullhashraw}{d429aca2a7aebc42bbf44da929124fbb}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2007 IEEE Symposium on Interactive Ray Tracing}
+      \field{title}{On Fast Construction of SAH-based Bounding Volume Hierarchies}
+      \field{year}{2007}
+      \field{pages}{33\bibrangedash 40}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1109/RT.2007.4342588
+      \endverb
+    \endentry
+    \entry{goldsmith1987automatic}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d64cc5d1202e6616fe082a203f052940}{%
+           family={Goldsmith},
+           familyi={G\bibinitperiod},
+           given={Jeffrey},
+           giveni={J\bibinitperiod}}}%
+        {{hash=a9e93f7ca8cd73ae8d93c0df70d413b4}{%
+           family={Salmon},
+           familyi={S\bibinitperiod},
+           given={John},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{fullhash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{fullhashraw}{206e5784d22a35ef7978a18ed344548c}
+      \strng{bibnamehash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{authorbibnamehash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{authornamehash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{authorfullhash}{206e5784d22a35ef7978a18ed344548c}
+      \strng{authorfullhashraw}{206e5784d22a35ef7978a18ed344548c}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Computer Graphics and Applications}
+      \field{number}{5}
+      \field{title}{Automatic Creation of Object Hierarchies for Ray Tracing}
+      \field{volume}{7}
+      \field{year}{1987}
+      \field{pages}{14\bibrangedash 20}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1109/MCG.1987.276983
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
