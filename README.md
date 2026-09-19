@@ -99,7 +99,7 @@ config = ExperimentConfig(
     datasets_per_count=50,
     base_seed=42,
     circle_radius=1.0,
-    coverage=0.1,
+    coverage=(0.05, 0.1, 0.2),
     strategies=("top_down", "bottom_up", "incremental"),
     create_plots=True,
     validate_against_brute_force=True,
@@ -114,7 +114,7 @@ config = ExperimentConfig(
 | `datasets_per_count` | Number of independently generated datasets per particle count |
 | `base_seed` | Base value used to generate deterministic dataset seeds |
 | `circle_radius` | Radius of all particles |
-| `coverage` | Approximate fraction of the domain covered by particles |
+| `coverage` | Coverage factors to test; each value is a separate experimental condition |
 | `strategies` | BVH construction strategies to execute |
 | `create_plots` | Enables creation of result plots after the run |
 | `validate_against_brute_force` | Compares BVH results against brute-force reference results |
