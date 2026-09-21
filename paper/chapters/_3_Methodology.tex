@@ -1,13 +1,15 @@
-\chapter{Methodology}
+ \chapter{Methodology}
 
 \section{Experimental Design}
-
+    
 To investigate the influence of the construction strategy on the quality of the BVH, an experiment is implemented. 
-Three algorithms are to be implemented, those being: top-down, bottom-up, and incremental, following the classification presented by Ericson\cite{ericson2004real} % Seitenzahl fehlt hier noch
+Algorithms from three different construction classes are to be implemented: top-down, bottom-up, and incremental, following the classification presented by Ericson\cite{ericson2004real} % Seitenzahl fehlt hier noch
 The experiment will focus on static two-dimensional collision detection, therefore particles will not move after dataset generation, and each hierarchy is generated completly before traversal is done.
 
-The independet variable of the experiment will be the BVH construction strategy, the dependent variables are the number of bounding volume and primitive collision checks performed during traversal.
-A bounding volume collision check is defined as a collision check where one of the aabb in the check contains more than one primitive particle.
+The primary independet variable of the experiment will be the BVH construction strategy. 
+Particle count and scene coverage are varied as additional experimental factors . 
+The dependent variables are the number of bounding volume and primitive collision checks performed during traversal.
+A bounding volume collision check is defined as a collision check where one of the AABB in the check contains more than one primitive particle.
 
 To isolate the effect of the construction strategy, all other components of the collision detecion procedure are kept constant between experiment runs.
 All strategies receive the same datasets and use the same geometric representation, collision detection and traversal procedure. 
@@ -15,16 +17,17 @@ This is meant to assure, that differences in the recorded number of checks can p
 
 \section{Dataset generation}
 Each dataset contains a number of equally sized circular particles, contained in a square two-dimensional area.
-The particle centers are taken from a uniform distribution using pythons \texttt{random} function and a seed generated from the experiments parameters.
+The particle centers are taken from a uniform distribution using pythons \texttt{random} function and a deterministic seed generated from the experiments parameters.
 Both x and y coordinates are limited to $([r,L-r])$, where r is the radius of the particles, ensuring they are completely enclosed in the bounds of the square.
 
-To keep the particle coverage (c) approximately constant for different particle counts (n), the domain side length is calculated as
+To keep the particle coverage approximately constant for different particle counts, a target coverage (c) is defined and the domain side lengths are calculated as:
 
 \[
 L=\sqrt{\frac{n\pi r^2}{c}}.
 \]
 
-% TODO: Formulierung für Grund überlegen
+Keeping the particle coverage constant prevents larger particle counts from automatically producing scenes with more overlaps, therefore making results across multiple particle counts more comparable.
+As particles may overlap, the actual coverage may slightly differ from the target.
 
 
 
@@ -35,18 +38,30 @@ The results primarily apply to these implementations rather than to the respecti
 
 \subsection{Top-down Construction}
 
+The top-down implementation uses a median split heuristic, for each node its AABB is compared along both axis. 
+The particles are then sorted by their centaer coordinate along the logner axis and split at the median position.
+
+
+
 \subsection{Bottom-up Construction}
+
+The bottom-up implementation uses the area of the merged AABB as its citeria for clustering. 
+In each construction step, all possible pairs of still active nodes are evaluated and the pair that produces the smallest merged AABB is selected.
+The selected pair is then replaced by the newly created parent node. THis process is repeated until only the root remains.
 
 \subsection{Incremental Construction}
 
+Particles are inserted in their generated dataset order.
+
+For each new particle the tree is traversed, by following the child whose AABB requires the smallest area increase to include the new particle.
 
 \section{Traversal and Evaluation}
 
 After construction, each hierarchy is queried using the same self-traversal procedure. 
-A pair of subtrees is discarded when their bounding volume do not overlap. 
-If the bounding volume does overlap, traversal continues with the remaining child-node combination. A primitive test is only performed when a subtreee conssits of two direct leaf-type children.
+A pair of subtrees is discarded when their AABBs do not overlap. 
+If they do overlap, traversal continues with the remaining child-node combinations. A primitive test is performed once two leaf nodes with overlapping AABBs are reached.
 
-Every evaluation records the number of necessary AABB overlap tests, and the number of primitive collision tests seperatly.
+Every evaluation records the number of necessary bounding volume overlap tests, and the number of primitive collision tests seperatly.
 Keeping the measures seperatly was chosen, as they represent two different operations that potentially come with a different computational cost, which therefore is relevant for measuring tree-quality.
 
 % Tree height and the total area of bounding volumes stored in the hierarchy is collected as additional/supplementary metrics.

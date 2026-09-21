@@ -6,10 +6,14 @@ from plyer import notification
 def main():
   config = ExperimentConfig(
     particle_counts=(25, 50, 100, 200, 500, 1000),
+<<<<<<< HEAD
+=======
+    #particle_counts=(2,5,10,20),
+>>>>>>> 147d41142971256c514955ce4b3ac052b4b3e5e6
     datasets_per_count=50,
     base_seed=42,
     circle_radius=1.0,
-    coverage=0.1,
+    coverage=(0.05, 0.1, 0.2),
     strategies=("top_down", "bottom_up", "incremental"),
     create_plots=True,
     validate_against_brute_force=True,

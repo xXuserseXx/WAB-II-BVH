@@ -25,8 +25,8 @@ class ExperimentConfig:
     datasets_per_count: int
     base_seed: int
     circle_radius: float
-    coverage: float
-    strategies: (tuple[str])
+    coverage: tuple[float, ...]
+    strategies: tuple[str, ...]
     create_plots: bool
 
     validate_against_brute_force: bool
@@ -41,8 +41,11 @@ class ExperimentConfig:
         if self.circle_radius <= 0:
             raise ValueError("kreise sind invalide")
 
-        if self.coverage <= 0:
-            raise ValueError("coverage muss über 0")
+        if not self.coverage:
+            raise ValueError("at least one coverage factor is required")
+
+        if any(value <= 0 or value > 1 for value in self.coverage):
+            raise ValueError("coverage must be between 0 and 1")
 
         if not self.strategies:
             raise ValueError("keine Strategie im Config")
@@ -67,81 +70,59 @@ def _write_raw_results_csv(path: Path, rows: list[dict[str]]) -> None:
         writer.writeheader()
         writer.writerows(rows)
 
-def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dict[str]]:
+def run_experiment(config: ExperimentConfig, output_dir: str | Path) -> list[dict[str]]:
     config.validate()
-
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
-
     raw_rows: list[dict[str]] = []
 
-    for particle_count in config.particle_counts:
-        for dataset_id in range(config.datasets_per_count):
+    for coverage in config.coverage:
+        for particle_count in config.particle_counts:
+            for dataset_id in range(config.datasets_per_count):
+                dataset_seed = det_seed(config.base_seed, particle_count, dataset_id, coverage)
+                particles, domain_side = generate_particle_set(
+                    particle_count, config.circle_radius, coverage, dataset_seed
+                )
 
-            dataset_seed = det_seed(config.base_seed,particle_count,dataset_id,)
+                reference_pairs = None
+                reference_candidates = None
 
-            particles, domain_side = generate_particle_set(particle_count,config.circle_radius,config.coverage,dataset_seed,)
+                if config.validate_against_brute_force:
+                    reference_pairs = brute_force_collisions(particles)
+                    reference_candidates = brute_force_aabb_overlaps(particles)
 
-            reference_pairs = None
-            reference_candidates = None
+                # Alle Strategien erhalten exakt denselben Datensatz.
+                for strategy in config.strategies:
 
-            if config.validate_against_brute_force:
-                reference_pairs = brute_force_collisions(particles)
-                reference_candidates = brute_force_aabb_overlaps(particles)
+                    root = BUILDERS[strategy](particles)
 
-            # Alle Strategien erhalten exakt denselben Datensatz.
-            for strategy in config.strategies:
+                    validate_bvh(root, particles)
 
-                root = BUILDERS[strategy](particles)
+                    result = detect_all_pairs(root,particles) 
 
-                validate_bvh(root, particles)
+                    if (
+                        reference_candidates is not None
+                        and result.candidate_pairs != reference_candidates
+                    ):
+                        missing = sorted(reference_candidates - result.candidate_pairs)[:10]
 
-                result = detect_all_pairs(root,particles) 
+                        unexpected = sorted(result.candidate_pairs - reference_candidates)[:10]
 
-                if (
-                    reference_candidates is not None
-                    and result.candidate_pairs != reference_candidates
-                ):
-                    missing = sorted(
-                        reference_candidates - result.candidate_pairs
-                    )[:10]
+                        raise AssertionError(f"Candidate mismatch for {strategy}, n={particle_count}, dataset={dataset_id}; missing={missing}, unexpected={unexpected}")
 
-                    unexpected = sorted(
-                        result.candidate_pairs - reference_candidates
-                    )[:10]
+                    if reference_pairs is not None and result.collision_pairs != reference_pairs:
+                        missing = sorted(reference_pairs - result.collision_pairs)[:10]
 
-                    raise AssertionError(
-                        f"Candidate mismatch for {strategy}, "
-                        f"n={particle_count}, dataset={dataset_id}; "
-                        f"missing={missing}, "
-                        f"unexpected={unexpected}"
-                    )
+                        unexpected = sorted(result.collision_pairs - reference_pairs)[:10]
 
-                if (
-                    reference_pairs is not None
-                    and result.collision_pairs != reference_pairs
-                ):
-                    missing = sorted(
-                        reference_pairs - result.collision_pairs
-                    )[:10]
+                        raise AssertionError(f"Collision mismatch for {strategy}, n={particle_count}, dataset={dataset_id}; missing={missing}, unexpected={unexpected}")
 
-                    unexpected = sorted(
-                        result.collision_pairs - reference_pairs
-                    )[:10]
-
-                    raise AssertionError(
-                        f"Collision mismatch for {strategy}, "
-                        f"n={particle_count}, dataset={dataset_id}; "
-                        f"missing={missing}, "
-                        f"unexpected={unexpected}"
-                    )
-
-                raw_rows.append(
-                    {
+                    raw_rows.append(
+                        {
                         "particle_count": particle_count,
                         "dataset_id": dataset_id,
                         "domain_side": domain_side,
-                        "coverage": config.coverage,
+                        "coverage": coverage,
                         "radius": config.circle_radius,
                         "strategy": strategy,
                         "bounding_volume_checks": result.bounding_volume_checks,
@@ -149,14 +130,10 @@ def run_experiment(config: ExperimentConfig,output_dir: str | Path,) -> list[dic
                         # Die beiden muss ich noch implementieren, ich will aber erstmal was ans laufen kriegen
                         # "tree_height": tree_height(root),
                         # "total_aabb_area": total_internal_aabb_area(root),
-                    }
-                )
+                        }
+                    )
 
-            print(
-                f"completed n={particle_count}, "
-                f"dataset={dataset_id + 1}/"
-                f"{config.datasets_per_count}"
-            )
+                print(f"completed coverage={coverage}, n={particle_count}, dataset={dataset_id + 1}/{config.datasets_per_count}")
 
     raw_path = output_path / "raw_results.csv"
 
