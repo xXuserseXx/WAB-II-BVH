@@ -1,45 +1,42 @@
 % Macro, um das Model einheitlich für alle Zeilen zu setzen
 \newcommand{\sol}{GPT-5.6 Sol High}
 \newcommand{\astra}{GPT-6 Astra High}
-
-
-% Usage-Optionen:
 \newcommand{\usageResearch}{Research and literature support}
 \newcommand{\usageLatex}{LaTeX support}
 \newcommand{\usageDebugging}{Code support}
 \newcommand{\usageWriting}{Wording and sentence-structure support}
-
 
 \begin{xltabular}{\textwidth}{|>{\raggedright\arraybackslash}p{2.5cm}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}p{3cm}|}
   \hline
   \textbf{Model} & \textbf{Prompt} & \textbf{Usage} \\
   \hline
   \endfirsthead
-  
   \endhead
-  
   \hline
   \endfoot
-  
+
   \sol & 
-	\usageResearch \\
-  \hline
-  
-	\sol & 
-	\texttt{PDF Reader Functionality} , \texttt{Web Search}; Generiere mir passende Bibtex Einträge basierend auf den angehangenen Papern. Gleiche die Informationen die im Paper stehen mit denen ab die du online finden kannst
-	\usageLatex \\
+\texttt{PDF Reader Functionality} , \texttt{Web Search}; Generiere mir passende Bibtex Einträge basierend auf den angehangenen Papern. Gleiche die Informationen die im Paper stehen mit denen ab die du online finden kannst &
+\usageLatex \\
   \hline
 
   \sol & 
-	\texttt{PDF Reader Functionality} , \texttt{Web Search}; Erstelle mir basierend auf den von mir genutzten Quellen sowie den weiteren Quellen in deinem Projektkontext ein "Abstract+", indem du die Arbeit neutral beurteilst, und einen größeren Fokus auf die Ergebnisse der Arbeit sowie deren Methodik legst, und deren Wertigkeit für meine eigene Arbeit einordnest.
-	\usageResearch \\
+\texttt{PDF Reader Functionality} , \texttt{Web Search}; Erstelle mir basierend auf den von mir genutzten Quellen sowie den weiteren Quellen in deinem Projektkontext ein "Abstract+", indem du die Arbeit neutral beurteilst, und einen größeren Fokus auf die Ergebnisse der Arbeit sowie deren Methodik legst, und deren Wertigkeit für meine eigene Arbeit einordnest. &
+\usageResearch \\
   \hline
 
   \sol & 
-	\texttt{Github Connection}; Schaue dir mein WAB Projektrepository an. Generiere dann eine passende README die das Projekt beschreibt und eine Anleitung zum Ausführen gibt.
-	\usageDebugging \\
+\texttt{Github Connection}; Schaue dir mein WAB Projektrepository an. Generiere dann eine passende README die das Projekt beschreibt und eine Anleitung zum Ausführen gibt. &
+\usageDebugging \\
   \hline
 
-  
-	\texttt{using Github Plugin for Data Access}, \texttt{Web Search}; Starte eine weitere Literatursuche basierend auf dem Text in meinm Github. Gebe mir eine kurze Zusammenfassung der Quelleninhalte, und einen Prioritätscore (Priorität nach wahrscheinlicher Nutzungshäufigkeit) Suche bitte primär nach Englischsprachigen Quellen, da die Arbeit auf Englisch verfasst wird & 
+  \sol  & 
+\texttt{Cowork-Modus} , \texttt{Github Connection}; Analysiere die neueste Results CSV in meinem Repository, und generiere daraus vier PNG Abbildungen, für die Statistiken tree\_height, totalinternallabbb, boundingvolumechecks und primitive\_checks. Für jede Statistik soll genau eine Abbildung mit drei Panels je eines für jeden Coverage Wert vorliegen. Die x-Achse enthält die PArtikelzahl, die y Achse die relevante Stat. Die Graphen sollen sowohl Boxplots und Liniengraphen in einem enthalten, wobei der Liniengraph den Median anzeigt, und der Boxplot eine Abweichung. Verwende ganzzahlige Beschriftung, skaliere die Graphen überall gleich für Vergleichbarkeit &
+\usageLatex \\
+  \hline
+
+  \sol  & 
+\texttt{Github Connection}, \texttt{Web Search}; Starte eine weitere Literatursuche basierend auf dem Text in meinm Github. Gebe mir eine kurze Zusammenfassung der Quelleninhalte, und einen Prioritätscore (Priorität nach wahrscheinlicher Nutzungshäufigkeit) Suche bitte primär nach Englischsprachigen Quellen, da die Arbeit auf Englisch verfasst wird &
+\usageDebugging \\
+  \hline
 \end{xltabular}
