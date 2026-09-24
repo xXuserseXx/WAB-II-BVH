@@ -10,9 +10,9 @@ Figure~\ref{fig:mean-bv-checks} shows the mean number of bounding-volume checks 
 
 
 \begin{figure}
-
-
-  \label{mean-bv-checks}
+  \centering
+  \includegraphics[width=\textwidth]{bounding_volume_checks.png}
+  \label{fig:mean-bv-checks}
 \end{figure}
 
 The number of checks increased with both particle count and coverage for every strategy.
@@ -34,7 +34,7 @@ Bottom-up produced fewer checks than incremental construction in 630 datasets, e
 \section{Primitive Checks}
 
 For every individual dataset, the number of primitive checks was identical across all three construction strategies. 
-Therefore the three strategies are represented by a single curve in the Figure~\ref{mean-primitive-checks}.
+Therefore the three strategies are represented by a single curve in the Figure~\ref{fig:mean-primitive-checks}.
 
 Instead the number of primitive checks was determined by the scene parameters. 
 It incresead with particle count, and approximately doubled when the coverage was doubled.
@@ -42,9 +42,28 @@ For 25 paticles the mean increased from 3.5 checks at a coverage of $0.05$ to 6.
 For 1000 particles the correspending values were 128.12, 260.28 and 514.62 checks.
 
 \begin{figure}
-
-
-  \label{mean-primitive-checks}
+  \centering
+  \includegraphics[width=\textwidth]{primitive_checks.png}
+  \label{fig:mean-primitive-checks}
 \end{figure}
 
+\section{fig:Secondary Metrics}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{tree_height.png}
+  \label{fig:tree-height}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{total_internal_aabb_area.png}
+  \label{fig:total-aabb-area}
+\end{figure}
+
+Figure \ref{fig:tree-height} comapres the height of the resulting hierarchies.
+Top-down construction produced the minimum height for every dataset, with its height being increased from 5 to 25 for particle sizes from 10 to 1000.
+The mean bottom-up height increased from 6.45 to 14.05 across the same range, while incremental increased from 6.99 to 16.24.
+
+The total internal AABB area is shown in Figure \ref{fig:total-aabb-area},
 \newpage
