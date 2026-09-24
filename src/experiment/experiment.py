@@ -10,6 +10,7 @@ from tree_construction.incremental import build_incremental
 from collision.traversal import detect_all_pairs
 
 from .dataset import det_seed, generate_particle_set
+from .metrics import tree_height, total_internal_aabb_area
 from collision.validation import  brute_force_collisions, brute_force_aabb_overlaps, validate_bvh
 from .plotting import create_plots
 
@@ -98,6 +99,9 @@ def run_experiment(config: ExperimentConfig, output_dir: str | Path) -> list[dic
 
                     validate_bvh(root, particles)
 
+                    height = tree_height(root)
+                    internal_aabb_area = total_internal_aabb_area(root)
+
                     result = detect_all_pairs(root,particles) 
 
                     if (
@@ -127,9 +131,8 @@ def run_experiment(config: ExperimentConfig, output_dir: str | Path) -> list[dic
                         "strategy": strategy,
                         "bounding_volume_checks": result.bounding_volume_checks,
                         "primitive_checks": result.primitive_checks,
-                        # Die beiden muss ich noch implementieren, ich will aber erstmal was ans laufen kriegen
-                        # "tree_height": tree_height(root),
-                        # "total_aabb_area": total_internal_aabb_area(root),
+                        "tree_height": height,
+                        "total_aabb_area": internal_aabb_area,
                         }
                     )
 
