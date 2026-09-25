@@ -2,8 +2,7 @@
 
 \section{Collision Detection and Bounding Volumes}
 
-For a scene containing $n$ objects, directly testing every possible pair requires
-$n(n-1)/2$ ($\mathcal{O}(n^2)$) pairwise collision tests in the worst case.
+For a scene containing $n$ objects, directly testing every possible pair requires exactly $n(n-1)/2$ ($\mathcal{O}(n^2)$) pairwise collision tests.
 Collision detection is commonly divided into two stages, broad phase and narrow phase
 The broad phase aims to effeciently eliminate pairs of objects that cannot collide and produce a set of potential collision candidate pairs.
 The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine wheter a collision occurs\cite[p.14]{ericson2004real}.
@@ -17,7 +16,7 @@ Axis-asligned bounding boxes are rectangular bounding volumes, which edges are a
 \section{Bounding Volume Hierarchies}
 
 A bounding Volume Hierarchy (BVH) organizes bounding volumes in a hierarchial tree-structure. 
-In a binary BVH each leaf node encloses a primitive object, while each internal node contains a bounding volume enclosing the primitives in its child nodes. \cite[pp.~235--238]{ericson2004real}
+In the binary BVHs used in this work, each leaf node encloses a primitive object, while each internal node contains a bounding volume enclosing the primitives in its child nodes. \cite[pp.~235--238]{ericson2004real}
 
 During collision detecition, pairs of nodes are collected for overlap.
 If their bounding volumes do not overlap, all primitives represented by the subtree represented by the bounding volume can be discarded.
@@ -42,6 +41,7 @@ The resulting hierarchy strongly depends on the cost-function used to split, whi
 Klosowski et al. investigate several splitting rules for collision-BVHs, with their experiments showing that different splitting decisions can results in different collision detection workload. \cite{klosowski1998kdops}
 
 Wald describes greedy SAH as the best-known approach for maximizing traversal efficiency, but does not substantiate this general claim further \cite[p.~2]{wald2007sah}.
+As this work does not aim to identify the optimal top-down method, a simple median split is used as a representive approach.
 
 \subsection{Bottom-Up Construction}
 
@@ -64,10 +64,10 @@ based on sequential insertion and the evaluation of possible insertion positions
 \section{Related Work} 
 
 BVHs have been studied in both collision-detection and ray tracing.
+Several studies on BVH construction originate from ray tracing, including Wald  and Walter et al. \cite{wald2007sah} \cite{walter2008agglomerative} .
+Other work such as Klosowski et al., investigates hierarchy construction specifically for collision detection \cite{klosowski1998kdops}.
 
+This work dows not attempt to identify a general optimal construction algorithm. 
+Instead it  compares one concrete implementation of each of the three construction classes in a controlled static 2D scenario.
 
-A substantial amount of the existing BVH-construction research exists in the context of ray-tracing \cite{wald2007sah} \cite{walter2008agglomerative} .
-
-Rather than comparing specific modern construction algorithms, this work investigates the three general construction methods that were described above.
-Fore each category on represantive implementation is applied, the exact implementation and experimental controls are described in the following Methodology chapter.
 \newpage
