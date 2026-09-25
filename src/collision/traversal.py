@@ -19,8 +19,7 @@ def detect_all_pairs(root: Node, particles: list[Particle]) -> TraversalResult:
 
   def traverse_pair(first: Node, second: Node) -> None:
     # AABB-Test.
-    if not first.is_leaf() or not second.is_leaf():
-      result.bounding_volume_checks += 1
+    result.bounding_volume_checks += 1
 
     if not first.aabb.overlaps(second.aabb):
       return
