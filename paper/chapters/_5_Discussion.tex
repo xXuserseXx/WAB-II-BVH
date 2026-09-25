@@ -1,7 +1,18 @@
 \chapter{Discussion}
 
-\section{Interpretation}
+\section{Interpretation of the primary Results}
 
+Construction strategy clearly influenced the number of broad-phase bounding-volume checks.
+Bottom-up produced the lowest mean in 17 out of 18 parameter combinations, whereas top-down produced the highest in all 18.
+The analysis of all scenes, shows this pattern is visible in 885 out of 900 scenes, so the ordering did not result from few extreme results.
+
+The construction criteria provide one plausible explanation.
+Bottom-up selects the pair for the active-node whose merged AABB has the smallest area, leading to local clusters forming.
+Top-down splits the longera axis at the median, leading to a more balanced tree without taking overlap or area into account.
+Incremental insetion considers AABB-area growth but searches only one specific path.
+
+As sibling overlap and AABB area by depth were not recorded, this interpretation remains speculative. 
+Therefore no single structural property can be identified as the cause.
 
 
 \section{Scope and Limitations}

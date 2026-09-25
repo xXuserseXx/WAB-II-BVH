@@ -64,10 +64,11 @@ If they do overlap, traversal continues with the remaining child-node combinatio
 Every evaluation records the number of necessary bounding volume overlap tests, and the number of primitive collision tests seperatly.
 Keeping the measures seperatly was chosen, as they represent two different operations that potentially come with a different computational cost, which therefore is relevant for measuring tree-quality.
 
-% Tree height and the total area of bounding volumes stored in the hierarchy is collected as additional/supplementary metrics.
-% They may help explain differences in behaviour, but are not considered a primary measurement as this is not the goal of this work.
-%
-% Mal gucken ob ich das so reinnehme, ich adde es erstmal als comment
+Tree height is the maximum edge depth with the root at zero. 
+Total internal AABB area sums all non-leaf AABBs. 
+Both are supplementary rather than direct measurements of traversal work.
+
+
 
 
 \newpage
