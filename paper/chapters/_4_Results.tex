@@ -1,8 +1,7 @@
 \chapter{Results}
 
 In total, the experiment produced 2700 obervations across three construction strategies, three levels of coverage, and six particle counts.
-Each configuration was evaluated on 50 independently generated datasets.
-The same particle configurations and datasets were used for all three evaluated strategies.
+Each configuration was evaluated on 50 independently generated datasets, with all three strategies receiving identical particle configuration
 
 \section{Bounding-Volume Checks}
 
@@ -12,24 +11,25 @@ Figure~\ref{fig:mean-bv-checks} shows the mean number of bounding-volume checks 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{bounding_volume_checks.png}
-  \caption{Mean bounding-volume checks.}
+  \caption{Mean bounding-volume checks by particle count, coverage and strategies}
   \label{fig:mean-bv-checks}
 \end{figure}
 
 The number of checks increased with both particle count and coverage for every strategy.
 Across all 18 combinations of these factors, the top-down construction produced the highest mean number of bounding-volume checks.
-The bottom-up construction produced the lowest mean in 17 out of 18 combinations.
-One exceeption occured for 25 particles and a coverage of 0.1 where the incremental mean was slightly lower than the the bottom-up (25.66 compared to 26.12).
+Bottom-up construction produced the lowest mean in 15 out of 18 combinations.
+Incremental produced the lowest mean for 25 particles at coverages of 0.10 and 0.20, and for 50 particles at a coverage of 0.05.
+In these three cases the difference between bottom-up and incremental was less than one check on average.
 
 The difference between top-down and bottom-up was present across the full inverstigated range. 
-Depending on the configuration, the top-down hierarchy required between ~33\% and ~17\% more checks on average when compared to the bottom-up hierarchy.
-At 25 particles and a coverage of 0.05 the means were 35.74 for top-down, 22.64 for bottom-up and 23.74 for incremental construction.
-At the largest configuration of 1000 particles and coverage of 0.20, the means increased to 3541.2, 2310,24 and 2900.5 checks. 
+Depending on the configuration, the top-down hierarchy required between ~56.6\% and ~84.0\% more checks on average.
+At 25 particles and a coverage of 0.05 the means were 58.72 for top-down, 34.80 for bottom-up and 35.44 for incremental construction.
+At the largest configuration of 1000 particles and coverage of 0.20, the means increased to 5,719.76.2, 3,306.20 and 3,922.48 checks. 
 
 This difference was observed in almost all datasets. 
-Top-down produced more bounding-volumes checks than bottom-up in  885 of the 900 datsets, equal values in three datasets, fewer checks in 12 datasets.
-Compared with incremental construction, top-down produced more checks in 863 datasets, equal values in two and fewer checks in 35 datasets.
-Bottom-up produced fewer checks than incremental construction in 630 datasets, equal values in nine and more checks in 261.
+Top-down produced more bounding-volumes checks than bottom-up in  896 of the 900 datsets, equal values in one datasets, fewer checks in three datasets.
+Compared with incremental construction, top-down produced more checks in 892 datasets, equal values in two and fewer checks in six datasets.
+Bottom-up produced fewer checks than incremental construction in 601 datasets, equal values in 32 and more checks in 267.
 
 
 \section{Primitive Checks}
@@ -39,13 +39,13 @@ Therefore the three strategies are represented by a single curve in the Figure~\
 
 Instead the number of primitive checks was determined by the scene parameters. 
 It incresead with particle count, and approximately doubled when the coverage was doubled.
-For 25 paticles the mean increased from 3.5 checks at a coverage of $0.05$ to 6.48 at $0.$1 and 13.62 for $0.2$.
+For 25 paticles the mean increased from 3.5 checks at a coverage of 0.05 to 6.48 at 0.1 and 13.62 for 0.2.
 For 1000 particles the correspending values were 128.12, 260.28 and 514.62 checks.
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{primitive_checks.png}
-  \caption{Mean primitive checks.}
+  \caption{Mean primitive checks by particle count and coverage. All strategies produced identical values.}
   \label{fig:mean-primitive-checks}
 \end{figure}
 
@@ -57,17 +57,17 @@ Across the same range, the coverage-averaged bottom-up mean increased from 6.45 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{tree_height.png}
-  \caption{Mean tree height.}
+  \caption{Mean tree height by particle count, coverage and strategies.}
   \label{fig:tree-height}
 \end{figure}
 
-Bottom-up produced the smallets mean total internal AABB area through 200 particles. 
-At 500 and 1000 particles town-down produced the smallest. (Figure~\ref{fig:total-aabb-area})
+When averaged across all coverage levels, bottom-up produced the smallest mean total internal AABB area through 200 particles.
+At 500 and 1,000 particles, top-down produced the smallest mean (Figure~\ref{fig:total-aabb-area}).
 
 \begin{figure}
   \centering
   \includegraphics[width=\textwidth]{total_internal_aabb_area.png}
-  \caption{Mean total internal AABB area.}
+  \caption{Mean total internal AABB area by particle count, coverage and strategies.}
   \label{fig:total-aabb-area}
 \end{figure}
 
