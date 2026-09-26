@@ -5,7 +5,7 @@
 For a scene containing $n$ objects, directly testing every possible pair requires exactly $n(n-1)/2$ ($\mathcal{O}(n^2)$) pairwise collision tests.
 Collision detection is commonly divided into two stages, broad phase and narrow phase.
 The broad phase aims to efficiently eliminate pairs of objects that cannot collide and produce a set of potential collision candidate pairs.
-The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine whether a collision  \cite[p.~14]{ericson2004real}.
+The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine whether a collision occurs  \cite[p.~14]{ericson2004real}.
 
 One approach for accelerating the broad phase is the use of bounding volumes.
 A bounding volume is a simple geometric shape completely enclosing an object.

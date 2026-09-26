@@ -3,12 +3,13 @@
 \section{Interpretation of the primary Results}
 
 Construction affected AABB traversal work, even though the same primitive candidate pairs were produced by all three hierarchies.
-The difference in bounding-volume checks therefore concern how many subtree pairs the traversal had to examine before reaching those candidates.
+The difference in bounding-volume checks therefore concerns how many subtree pairs the traversal had to examine before reaching those candidates.
 
 Neither a shorter tree nor a smaller sum of internal AABB area guaranteed fewer checks.
-Top-down always had the minimum tree height, at 1,000 particles and 0.05 coverage, its total AABB area was 12.3 percent lower than bottom-ups, yet it required 56.6\% more checks.
+Top-down always had the minimum tree height. 
+At 1,000 particles and 0.05 coverage, its total AABB area was 12.3\% lower than bottom-up's, yet it required 56.6\% more checks.
 The collected stats do not describe which pairs of subtree AABBs overlap and consequently have to be explored further.
-Bottom-ups minimum area merges may create groups that allow earlier rejection of subtrees, whereas median splitting balances particle counts without specifically targeting this property.
+Bottom-up's minimum-area merges may create groups that allow earlier rejection of subtrees, whereas median splitting balances particle counts without specifically targeting this property.
 As sibling overlap and the exact visited node pairs were not recorded, this remains a plausible theory rather than a shown cause.
 
 
@@ -19,11 +20,11 @@ It does not establish that bottom-up construction is generally superior to every
 A top-down method using e.g. a surface-area heuristic could therefore produce a different result from the median split evaluated here.
 
 The chosen metrics are also proxies for traversal cost only rather than measurements of execution time. 
-A Bounding volume construction method may construct a hierarchy that is fast to traverse, but takes measurably longer to construct, thereby reducing the advantage gained.
+A bounding-volume construction method may construct a hierarchy that is fast to traverse, but takes measurably longer to construct, thereby reducing the advantage gained.
 This trade-off may become less important when a hierarchy is traversed many times, but total performance cannot be assessed without construction time and the expected number of queries to the hierarchy taken into account.
 
 Further limitations come from the scene model.
-The experiment uses uniformly generated static two-dimensional scenes, equal-sized circles, AABBs and the tested ranges of 25 to 1000 particles and 5\% to 20\% coverage.
+The experiment uses uniformly generated static two-dimensional scenes, equal-sized circles, AABBs, the tested ranges of 25 to 1000 particles and 5\% to 20\% coverage.
 The results cannot directly be transferred to different scenarios.
 The 50 datasets per parameter combination show that the observed ordering is highly consistent for the investigated model.
 

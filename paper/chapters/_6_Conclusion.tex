@@ -1,7 +1,10 @@
 \chapter{Conclusion and Future Work}
 This WAB compared representative top-down, bottom-up and incremental BVH implementations on the same 900 static datasets.
-For the tested variants, construction strongly affected broad-phase checks:
-Bottom-up produced the lowest mean in 15 of 18 parameter combinations. Top-down produced the highest in all 18.
+
+The research question can be answered as follows:
+The evaluated construction algorithm influenced the number of bounding-volume checks required during traversal
+Bottom-up produced the lowest mean in 15 of 18 parameter combinations. 
+Top-down produced the highest in all 18.
 Incremental generally ranked between them.
 Primitive-check counts were identical due to fixed leaf AABBs and traversal producing the same test candidates.
 

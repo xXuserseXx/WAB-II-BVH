@@ -2,8 +2,8 @@
 
 \section{Experimental Design}
     
-To investigate the influence of the construction strategy on the quality of the BVH, an experiment is implemented. 
-Algorithms from three different construction classes are to be implemented: top-down, bottom-up, and incremental, following the classification presented by Ericson\cite[p.~239]{ericson2004real} % Seitenzahl fehlt hier noch
+To investigate the influence of the construction strategy on the BVH traversal work, an experiment is implemented. 
+The experiment implemented algorithms from three different construction classes: top-down, bottom-up, and incremental, following the classification presented by Ericson\cite[p.~239]{ericson2004real}. % Seitenzahl fehlt hier noch
 The experiment will focus on static two-dimensional collision detection, therefore particles will not move after dataset generation, and each hierarchy is generated completely before traversal is done.
 
 The primary independent variable of the experiment is the BVH construction strategy. 
@@ -22,9 +22,9 @@ All three algorithms are evaluated on the same datasets.
 \section{Dataset generation}
 Each dataset contains a number of equally sized circular particles, contained in a square two-dimensional area.
 The particle centers are taken from a uniform distribution using Python's \texttt{random} function and a deterministic seed generated from the experiment's parameters.
-Both x and y coordinates are limited to $[r,L-r]$, where r is the radius of the particles, ensuring they are completely enclosed in the bounds of the square.
+Both x and y coordinates are limited to $[r,L-r]$, where $r$ is the radius of the particles, ensuring they are completely enclosed in the bounds of the square.
 
-To keep the nominal particle coverage approximately constant for different particle counts, a target coverage (c) is defined, and the domain side lengths are calculated as:
+To keep the nominal particle coverage approximately constant for different particle counts, a target coverage ($c$) is defined, and the domain side lengths are calculated as:
 
 \[
 L=\sqrt{\frac{n\pi r^2}{c}}.
@@ -54,8 +54,8 @@ The selected pair is then replaced by the newly created parent node. This proces
 \subsection{Incremental Construction}
 
 Particles are inserted in their generated dataset order.
-For each new particle the tree is traversed, by following the child whose AABB requires the smallest area increase to include the new particle.
-The nodes along this search path are then compared using an insertion-cost function, that accounts for the area of the AABB enclosing the candidate node and the new particle, as well as resulting area increases of its ancestor. 
+For each new particle the tree is traversed by following the child whose AABB requires the smallest area increase to include the new particle.
+The nodes along this search path are then compared using an insertion-cost function that accounts for the area of the AABB enclosing the candidate node and the new particle, as well as resulting area increases of its ancestors. 
 The node with the lowest cost is selected as the position for insertion.
 
 \section{Traversal and Evaluation}
@@ -67,7 +67,7 @@ A primitive test, which is defined as \(\lVert p_i-p_j\rVert \le r_i+r_j\), wher
 The self-traversal compares sibling subtrees recursively so that each relevant unordered leaf pair is reached once.
 
 Every evaluation records the number of necessary bounding volume overlap tests, and the number of primitive collision tests separately.
-Keeping the measures separately was chosen, as they represent two different operations that potentially come with a different computational cost, which therefore is relevant for measuring tree-quality.
+Measuring the results separately was chosen, as they represent two different operations that come with potentially different computational cost.
 
 Tree height is the maximum edge depth with the root at zero. 
 Total internal AABB area sums all non-leaf AABBs. 
