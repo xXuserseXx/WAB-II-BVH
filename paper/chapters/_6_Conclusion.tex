@@ -1,12 +1,13 @@
-\chapter{Conclusion}
-This WAB comapred representative top-down, bottom-up and incremental BVH implementations on the same 900 static datasets.
-
-For the tested variants, construction strongly affected broad-phase checks.
-Bottom-up produced the lowest mean in 17 of 18 parameter combinations. Top-down produced the highest in all 18.
+\chapter{Conclusion and Future Work}
+This WAB compared representative top-down, bottom-up and incremental BVH implementations on the same 900 static datasets.
+For the tested variants, construction strongly affected broad-phase checks:
+Bottom-up produced the lowest mean in 15 of 18 parameter combinations. Top-down produced the highest in all 18.
 Incremental generally ranked between them.
-
 Primitive-check counts were identical due to fixed leaf AABBs and traversal producing the same test candidates.
 
-The conclusion is restricted to these heuristics and scenes, other construction methods, or scene behaviours could change the ranking.
+The results are restricted to these heuristics and scenes, therefore they do not establish a general ranking of the three construction classes.
+
+Future work could extend the experiment with additional construction heuristics, in particular SAH-based top-down construction, different scene distributions and dynamic scenarios.
+Including measurements on construction cost would further allow evaluating the trade-off between construction cost and traversal performance.
 
 \newpage

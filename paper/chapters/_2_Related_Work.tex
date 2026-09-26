@@ -1,37 +1,37 @@
-\chapter{Theoretical Backround and Related Work}
+\chapter{Theoretical Background and Related Work}
 
 \section{Collision Detection and Bounding Volumes}
 
 For a scene containing $n$ objects, directly testing every possible pair requires exactly $n(n-1)/2$ ($\mathcal{O}(n^2)$) pairwise collision tests.
-Collision detection is commonly divided into two stages, broad phase and narrow phase
-The broad phase aims to effeciently eliminate pairs of objects that cannot collide and produce a set of potential collision candidate pairs.
-The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine wheter a collision occurs\cite[p.~14]{ericson2004real}.
+Collision detection is commonly divided into two stages, broad phase and narrow phase.
+The broad phase aims to efficiently eliminate pairs of objects that cannot collide and produce a set of potential collision candidate pairs.
+The remaining candidates are then processed in the narrow phase, which performs collision tests on the actual geometry to determine whether a collision  \cite[p.~14]{ericson2004real}.
 
-One approach for the accelerating the broad phase is the use of bounding Volumes.
+One approach for accelerating the broad phase is the use of bounding volumes.
 A bounding volume is a simple geometric shape completely enclosing an object.
-If the bounding volumes of two objects do not interesect, neither will the enclosed objects.
+If the bounding volumes of two objects do not intersect, neither will the enclosed objects.
 In this work axis-aligned bounding-boxes (AABBs) are used as bounding volumes.
-AABBs are rectangular bounding volumes whose edges are aligned with the coordinate axis, allowing overlaps to be tested using intervall comparison \cite[pp.~75--81]{ericson2004real} \cite[p.~1]{vandenbergen1997aabb}.
+AABBs are rectangular bounding volumes whose edges are aligned with the coordinate axes, allowing overlaps to be tested using interval comparison \cite[pp.~75--81]{ericson2004real} \cite[p.~1]{vandenbergen1997aabb}.
 
 \section{Bounding Volume Hierarchies}
 
-A bounding Volume Hierarchy (BVH) organizes bounding volumes in a hierarchial tree-structure. 
+A Bounding Volume Hierarchy (BVH) organizes bounding volumes in a hierarchical tree-structure. 
 In the binary BVHs used in this work, each leaf node encloses a primitive object, while each internal node contains a bounding volume enclosing the primitives in its child nodes. \cite[pp.~235--238]{ericson2004real}
 
-During collision detecition, pairs of nodes are collected for overlap.
-If their bounding volumes do not overlap, all primitives represented by the subtree represented by the bounding volume can be discarded.
+During collision detection, pairs of nodes are tested for overlap.
+If their bounding volumes do not overlap, all primitives represented by the subtree can be discarded.
 In case they do overlap, the subtrees will recursively be traversed until leaf nodes are reached, where primitive tests are conducted \cite[pp.~253--260]{ericson2004real}. 
 Van den Bergen describes the same general principle for collision detection using AABB trees \cite[p.~4]{vandenbergen1997aabb}.
 From this we can conclude that the structure of the tree influences how much of the subtrees can actually be discarded. 
 
 An effective hierarchy should allow large parts of the represented geometry to be rejected early.
-Zachman describes hierarchials collision-detection performance as depending on the tightness of the bounding-volume, which influences the number of bounding-volume tests, and their simplicity, which influences the cost of individual tests\cite[p.~121]{zachmann2002minimal}
+Zachmann describes hierarchical collision-detection performance as depending on the tightness of the bounding-volume, which influences the number of bounding-volume tests, and their simplicity, which influences the cost of individual tests\cite[p.~121]{zachmann2002minimal}
 
 \section{BVH Construction Strategies}
 
-Ericson distringuishes between three different approaches to BVH construction, these being top-down, bottom-up and incremental construction \cite[pp.~239--253]{ericson2004real}.
-A similir distinction is made by Walter et al., who describe these mechanics as divisive, agglomerative and incemental \cite[p.~81]{walter2008agglomerative}.
-A more recent survey by Meister et al. also sperates BVH construction into top-down, bottom-up and incremental before discussing more specialised approaches \cite[pp.~686--688]{meister2021survey}.
+Ericson distinguishes between three different approaches to BVH construction, these being top-down, bottom-up and incremental construction \cite[pp.~239--253]{ericson2004real}.
+A similar distinction is made by Walter et al., who describe these mechanics as divisive, agglomerative and incremental \cite[p.~81]{walter2008agglomerative}.
+A more recent survey by Meister et al. also separates BVH construction into top-down, bottom-up and incremental before discussing more specialized approaches \cite[pp.~686--688]{meister2021survey}.
 Algorithms within each category can still differ in the heuristics used to make construction decisions.
 
 \subsection{Top-Down Construction}
@@ -39,38 +39,38 @@ Algorithms within each category can still differ in the heuristics used to make 
 Top-down construction begins with all primitives assigned to the root node.
 The primitive set is then split into subsets recursively, until the desired leaf size, usually one primitive per leaf, is reached \cite[pp.~240--244]{ericson2004real}.
 
-The resulting hierarchy strongly depends on the cost-function used to split, which is why ther chosing of this algorithm depends on the BVhs use-case \cite[p.~81]{walter2008agglomerative} \cite[p.34]{wald2007sah}
+The resulting hierarchy strongly depends on the cost-function used for splitting, which is why the choice of splitting heuristic depends on the BVHs use-case \cite[p.~81]{walter2008agglomerative} \cite[p.~34]{wald2007sah}
 
-Klosowski et al. investigate several splitting rules for collision-BVHs, with their experiments showing that different splitting decisions can results in different collision detection workload. \cite{klosowski1998kdops}
+Klosowski et al. investigate several splitting rules for collision-BVHs, with their experiments showing that different splitting decisions can result in different collision detection workload. \cite{klosowski1998kdops}
 Wald describes greedy SAH as the best-known approach for maximizing traversal efficiency, but does not substantiate this general claim further \cite[p.~34]{wald2007sah}.
-As this work does not aim to identify the optimal top-down method, a simple median split is used as a representive approach.
+As this work does not aim to identify the optimal top-down method, a simple median split is used as a representative approach.
 
 \subsection{Bottom-Up Construction}
 
 Bottom-up construction proceeds in the opposite direction. 
 Construction begins with each primitive as an individual leaf node, which are repeatedly grouped under new internal nodes, until only the root remains \cite[pp.~245--250]{ericson2004real}.
-Meister et al. describes the same general approach for BVHs and note that the merge criterion determines which clusters are combined during construction \cite[p.~6897]{meister2021survey}.
+Meister et al. describe the same general approach for BVHs and note that the merge criterion determines which clusters are combined during construction \cite[p.~687]{meister2021survey}.
 
 \subsection{Incremental Construction}
 
-In incremental tree construction, a hierarchy is build by inserting primitives sequentially. 
-Starting from an initially small tree, each new particle is assigned an insertion position according to a placement criterion and the affected bounding vokumes are then updated \cite[pp.~251--252]{ericson2004real}.
+In incremental tree construction, a hierarchy is built by inserting primitives sequentially. 
+Starting from an initially small tree, each new particle is assigned an insertion position according to a placement criterion and the affected bounding volumes are then updated \cite[pp.~251--252]{ericson2004real}.
 
-Goldsmith and Salmon proposed an early automatic hierarchy-construction method in which objects are added successively and the existing hierarchy is searched for an insetion point which minimizes the estimated increase in traversal cost \cite[pp.~16--17]{goldsmith1987automatic}.
+Goldsmith and Salmon proposed an early automatic hierarchy-construction method in which objects are added successively, and the existing hierarchy is searched for an insertion point which minimizes the estimated increase in traversal cost \cite[pp.~16--17]{goldsmith1987automatic}.
 
 
 
 \section{Related Work} 
 
 BVHs have been studied in both collision-detection and ray tracing.
-Klosowski et al. investigates several construction and splöitting decisions specifically for collision detection using so called k-DOP hierarchies.
-Their experiments show that different construction rules and splitting points can produce different collision-detection workloads \cite{klosowski1998kdops}
+Klosowski et al. investigate several construction and splitting decisions specifically for collision detection using so-called k-DOP hierarchies.
+Their experiments show that different construction rules and splitting points can produce different collision-detection workloads \cite{klosowski1998kdops}.
 
 A large part of construction research originates from ray tracing.
 Wald specifically investigates SAH-based top-down construction \cite{wald2007sah}, while Walter et al. study agglomerative construction \cite{walter2008agglomerative}.
-Meister et al. provides a more recent survey of BVH research with a focus on construction and traversal, covering a broad range of more specialised procedures \cite{meister2021survey}.
+Meister et al. provides a more recent survey of BVH research with a focus on construction and traversal, covering a broad range of more specialized procedures \cite{meister2021survey}.
 
-This work dows not attempt to generally identify an optimal construction algorithm. 
-Instead it compares one concrete implementation of each of the three general construction classes in a controlled static 2D scenario.
+This work does not attempt to generally identify an optimal construction algorithm. 
+Instead, it compares one concrete implementation of each of the three general construction classes in a controlled static 2D scenario.
 
 \newpage
